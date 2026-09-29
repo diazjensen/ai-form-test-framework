@@ -1,0 +1,8 @@
+{
+  "target_url": "http://demo.owasp-juice.shop/",
+  "submit_endpoint": "/submit",
+  "_comment_case": "case: 'A' = use backend_reference_path below. 'auto' = use it if present/valid, else fall back to Case B automatically. 'B' = force black-box fuzzing even if a reference file exists.",
+  "case": "auto",
+  "backend_reference_path": "backend_reference/validation_rules.py",
+  "srs_path": "srs/registration_srs.md"
+}

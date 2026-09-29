@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Registration</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#f1f5f9; display:flex; justify-content:center; padding-top:40px; }
+    .card { background:#fff; padding:2rem; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.1); width:360px; }
+    label { display:block; margin-top:1rem; font-size:.85rem; color:#334155; font-weight:600; }
+    input { width:100%; padding:.5rem; margin-top:.25rem; border:1px solid #cbd5e1; border-radius:6px; }
+    button { margin-top:1.5rem; width:100%; padding:.6rem; background:#2563eb; color:#fff; border:none; border-radius:6px; font-weight:600; cursor:pointer; }
+    #result { margin-top:1rem; font-size:.85rem; }
+    .ok { color:#16a34a; } .err { color:#dc2626; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Register</h2>
+    <form id="regForm" action="/submit" method="post">
+      <label for="full_name">Full Name</label>
+      <input type="text" id="full_name" name="full_name" required minlength="2" maxlength="50">
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="age">Age</label>
+      <input type="number" id="age" name="age" required min="18" max="100">
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required minlength="8" maxlength="64">
+
+      <label for="phone">Phone (optional)</label>
+      <input type="text" id="phone" name="phone" pattern="^\+?\d{10,13}$">
+
+      <button type="submit">Create Account</button>
+    </form>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    document.getElementById('regForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const data = new URLSearchParams(new FormData(form));
+      const res = await fetch('/submit', { method: 'POST', body: data });
+      const json = await res.json();
+      const box = document.getElementById('result');
+      if (res.ok) {
+        box.innerHTML = `<p class="ok">${json.message}</p>`;
+      } else {
+        box.innerHTML = '<p class="err">' + Object.values(json.errors).join('<br>') + '</p>';
+      }
+    });
+  </script>
+</body>
+</html>

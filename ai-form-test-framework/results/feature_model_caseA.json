@@ -1,0 +1,75 @@
+{
+  "case": "A",
+  "source_url": "http://127.0.0.1:5000/",
+  "submit_endpoint": "http://127.0.0.1:5000/submit",
+  "method": "POST",
+  "fields": [
+    {
+      "name": "full_name",
+      "label": "Full Name",
+      "type": "text",
+      "required": true,
+      "min": null,
+      "max": null,
+      "min_len": 2,
+      "max_len": 50,
+      "pattern": null,
+      "source": "srs_document",
+      "confidence": 1.0
+    },
+    {
+      "name": "email",
+      "label": "Email",
+      "type": "email",
+      "required": true,
+      "min": null,
+      "max": null,
+      "min_len": null,
+      "max_len": null,
+      "pattern": null,
+      "source": "srs_document",
+      "confidence": 1.0
+    },
+    {
+      "name": "age",
+      "label": "Age",
+      "type": "number",
+      "required": true,
+      "min": 18,
+      "max": 100,
+      "min_len": null,
+      "max_len": null,
+      "pattern": null,
+      "source": "srs_document",
+      "confidence": 1.0
+    },
+    {
+      "name": "password",
+      "label": "Password",
+      "type": "password",
+      "required": true,
+      "min": null,
+      "max": null,
+      "min_len": 8,
+      "max_len": 64,
+      "pattern": null,
+      "source": "srs_document",
+      "confidence": 1.0
+    },
+    {
+      "name": "phone",
+      "label": "Phone (optional)",
+      "type": "text",
+      "required": false,
+      "min": null,
+      "max": null,
+      "min_len": 10,
+      "max_len": 13,
+      "pattern": "^\\+?\\d{10,13}$",
+      "source": "srs_document",
+      "confidence": 1.0
+    }
+  ],
+  "specification_source": "srs_document",
+  "reference_path": "/Users/diazjensen/Desktop/Main Project/ai-form-test-framework/srs/registration_srs.md"
+}

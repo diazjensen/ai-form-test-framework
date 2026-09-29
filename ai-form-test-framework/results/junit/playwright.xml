@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="playwright_functional" tests="5" failures="0">
+  <testcase classname="playwright_functional" name="positive_all_valid" />
+  <testcase classname="playwright_functional" name="negative_full_name_invalid" />
+  <testcase classname="playwright_functional" name="negative_email_invalid" />
+  <testcase classname="playwright_functional" name="negative_age_invalid" />
+  <testcase classname="playwright_functional" name="negative_password_invalid" />
+</testsuite>

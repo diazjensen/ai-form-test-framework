@@ -1,0 +1,11 @@
+{
+  "_comment": "DEVELOPER-SUPPLIED BACKEND REFERENCE (JSON Schema convention). Alternative to validation_rules.py -- use this style if you have an OpenAPI spec, a Joi/Zod schema, or any JSON-Schema-like description of your form fields instead of Python source. The framework reads 'properties' + 'required' the same way OpenAPI/JSON-Schema does.",
+  "required": ["full_name", "email", "age", "password"],
+  "properties": {
+    "full_name": { "type": "string", "minLength": 2, "maxLength": 50 },
+    "email": { "type": "string", "format": "email", "pattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$" },
+    "age": { "type": "integer", "minimum": 18, "maximum": 100 },
+    "password": { "type": "string", "minLength": 8, "maxLength": 64 },
+    "phone": { "type": "string", "pattern": "^\\+?\\d{10,13}$" }
+  }
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#f1f5f9; display:flex; justify-content:center; padding-top:40px; }
+    .card { background:#fff; padding:2rem; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.1); width:400px; }
+    .steps { display:flex; gap:.5rem; margin-bottom:1rem; }
+    .steps span { flex:1; text-align:center; padding:.3rem; border-radius:6px; background:#e2e8f0; font-size:.75rem; color:#64748b; }
+    .steps span.active { background:#2563eb; color:#fff; }
+    label { display:block; margin-top:1rem; font-size:.85rem; color:#334155; font-weight:600; }
+    input, select { width:100%; padding:.5rem; margin-top:.25rem; border:1px solid #cbd5e1; border-radius:6px; }
+    button { margin-top:1.2rem; padding:.6rem 1rem; background:#2563eb; color:#fff; border:none; border-radius:6px; font-weight:600; cursor:pointer; }
+    button.secondary { background:#64748b; margin-right:.5rem; }
+    .step { display:none; } .step.active { display:block; }
+    .error { color:#dc2626; font-size:.8rem; margin-top:.3rem; min-height:1em; }
+    #result { margin-top:1rem; font-size:.9rem; } .ok { color:#16a34a; } .err { color:#dc2626; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Checkout</h2>
+    <div class="steps">
+      <span id="ind1" class="active">1. Shipping</span>
+      <span id="ind2">2. Payment</span>
+      <span id="ind3">3. Confirm</span>
+    </div>
+
+    <div class="step active" id="step1">
+      <label for="address">Address</label>
+      <input type="text" id="address" name="address">
+      <div class="error" id="err_address"></div>
+
+      <label for="country">Country</label>
+      <select id="country" name="country">
+        <option value="">-- select --</option>
+        <option value="IN">India</option>
+        <option value="US">United States</option>
+        <option value="GB">United Kingdom</option>
+      </select>
+
+      <label for="state">State</label>
+      <select id="state" name="state" disabled>
+        <option value="">-- select country first --</option>
+      </select>
+      <div class="error" id="err_step1"></div>
+      <button type="button" id="next1">Next</button>
+    </div>
+
+    <div class="step" id="step2">
+      <label for="card_number">Card number</label>
+      <input type="text" id="card_number" name="card_number" placeholder="16 digits">
+      <div class="error" id="err_card"></div>
+
+      <button type="button" id="addCoupon" class="secondary">+ Add coupon</button>
+      <div id="couponWrap" style="display:none">
+        <label for="coupon">Coupon code</label>
+        <input type="text" id="coupon" name="coupon">
+      </div>
+      <div style="margin-top:1rem">
+        <button type="button" class="secondary" id="back2">Back</button>
+        <button type="button" id="next2">Next</button>
+      </div>
+    </div>
+
+    <div class="step" id="step3">
+      <p id="summary"></p>
+      <button type="button" class="secondary" id="back3">Back</button>
+      <button type="button" id="placeOrder">Place order</button>
+    </div>
+
+    <div id="result"></div>
+  </div>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+  function show(n) {
+    [1,2,3].forEach(i => {
+      $('step'+i).classList.toggle('active', i === n);
+      $('ind'+i).classList.toggle('active', i === n);
+    });
+  }
+
+  $('country').addEventListener('change', async () => {
+    const c = $('country').value;
+    const st = $('state');
+    st.innerHTML = '';
+    if (!c) {
+      st.disabled = true;
+      st.innerHTML = '<option value="">-- select country first --</option>';
+      return;
+    }
+    const res = await fetch('/api/states?country=' + c);
+    const json = await res.json();
+    st.innerHTML = '<option value="">-- select --</option>' +
+      json.states.map(s => `<option value="${s}">${s}</option>`).join('');
+    st.disabled = false;
+  });
+
+  $('next1').addEventListener('click', () => {
+    let ok = true;
+    $('err_address').textContent = '';
+    $('err_step1').textContent = '';
+    if (!$('address').value.trim()) { $('err_address').textContent = 'Address is required.'; ok = false; }
+    if (!$('country').value || !$('state').value) { $('err_step1').textContent = 'Select country and state.'; ok = false; }
+    if (ok) show(2);
+  });
+
+  $('addCoupon').addEventListener('click', () => {
+    $('couponWrap').style.display = 'block';
+    $('addCoupon').style.display = 'none';
+  });
+
+  $('next2').addEventListener('click', () => {
+    $('err_card').textContent = '';
+    const card = $('card_number').value.replace(/\s+/g, '');
+    if (!/^\d{16}$/.test(card)) { $('err_card').textContent = 'Card number must be 16 digits.'; return; }
+    $('summary').textContent = `Ship to ${$('address').value}, ${$('state').value}, ${$('country').value}. Card ending ${card.slice(-4)}.`;
+    show(3);
+  });
+
+  $('back2').addEventListener('click', () => show(1));
+  $('back3').addEventListener('click', () => show(2));
+
+  $('placeOrder').addEventListener('click', async () => {
+    const body = {
+      address: $('address').value, country: $('country').value, state: $('state').value,
+      card_number: $('card_number').value, coupon: $('coupon').value,
+    };
+    const res = await fetch('/api/checkout', {
+      method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body),
+    });
+    const json = await res.json();
+    $('result').innerHTML = res.ok
+      ? `<p class="ok">${json.message}</p>`
+      : '<p class="err">' + Object.values(json.errors).join('<br>') + '</p>';
+  });
+</script>
+</body>
+</html>

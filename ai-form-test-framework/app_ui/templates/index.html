@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Web-Form Testing Framework — Control Panel</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background:#0f172a; color:#e2e8f0; margin:0; padding:2rem; }
+  h1 { color:#38bdf8; margin-bottom:.25rem; }
+  .subtitle { color:#94a3b8; margin-top:0; margin-bottom:2rem; }
+  .grid { display:grid; grid-template-columns: 1fr 1fr; gap:1.5rem; align-items:start; }
+  section { background:#1e293b; border-radius:14px; padding:1.5rem; box-shadow:0 10px 30px rgba(0,0,0,.3); margin-bottom:1.5rem; }
+  h2 { margin-top:0; color:#f1f5f9; border-bottom:1px solid #334155; padding-bottom:.5rem; font-size:1.1rem; }
+  label { display:block; margin-top:1rem; font-size:.85rem; color:#94a3b8; font-weight:600; }
+  input[type=text], select { width:100%; padding:.55rem; margin-top:.3rem; border:1px solid #334155; border-radius:8px; background:#0f172a; color:#e2e8f0; }
+  .radio-row { display:flex; gap:1rem; margin-top:.5rem; }
+  .radio-row label { display:flex; align-items:center; gap:.4rem; margin-top:0; font-weight:400; color:#e2e8f0; }
+  button { margin-top:1.2rem; padding:.6rem 1.2rem; background:#2563eb; color:#fff; border:none; border-radius:8px; font-weight:600; cursor:pointer; }
+  button.secondary { background:#334155; }
+  button:disabled { opacity:.5; cursor:not-allowed; }
+  .upload-row { display:flex; gap:.6rem; align-items:center; margin-top:.6rem; }
+  #refFileInput { color:#94a3b8; }
+  .hint { font-size:.78rem; color:#64748b; margin-top:.4rem; }
+  .log-box { background:#020617; border-radius:8px; padding:1rem; font-family: Consolas, monospace; font-size:.78rem; height:420px; overflow-y:auto; white-space:pre-wrap; border:1px solid #334155; }
+  .status-badge { display:inline-block; padding:.2rem .7rem; border-radius:999px; font-size:.75rem; font-weight:600; margin-left:.5rem; }
+  .status-idle { background:#334155; color:#94a3b8; }
+  .status-running { background:#78350f; color:#fbbf24; }
+  .status-success { background:#14532d; color:#4ade80; }
+  .status-failed { background:#450a0a; color:#f87171; }
+  .toast { position:fixed; top:1rem; right:1rem; padding:.7rem 1.2rem; border-radius:8px; background:#14532d; color:#4ade80; font-size:.85rem; display:none; }
+</style>
+</head>
+<body>
+  <h1>AI-Based Web-Form Testing Framework</h1>
+  <p class="subtitle">Playwright (functional) · PyTest (contract/unit) · Locust (performance) — driven by a single unified feature model</p>
+
+  <div class="grid">
+    <div>
+      <section>
+        <h2>1. Target</h2>
+        <label for="target_url">Form URL under test</label>
+        <input type="text" id="target_url" value="{{ config.target_url }}">
+        <div class="hint">Make sure this app is already running before you click Run.</div>
+      </section>
+
+      <section>
+        <h2>2. Backend reference (optional)</h2>
+        <div class="hint">
+          This is the place to give the framework whatever you have: your backend's
+          validation source (as a <code>VALIDATION_RULES</code> dict — see
+          <code>backend_reference/README.md</code>) or a JSON-Schema/OpenAPI-style
+          spec. Leave this empty and the framework tests the form as a pure black box.
+        </div>
+
+        <label for="ref_select">Existing reference file</label>
+        <select id="ref_select">
+          <option value="">— none / black-box only —</option>
+          {% for f in ref_files %}
+          <option value="backend_reference/{{ f }}" {% if config.backend_reference_path == 'backend_reference/' + f %}selected{% endif %}>{{ f }}</option>
+          {% endfor %}
+        </select>
+
+        <label>Or upload a new one</label>
+        <div class="upload-row">
+          <input type="file" id="refFileInput" accept=".py,.json">
+          <button class="secondary" id="uploadBtn" type="button">Upload</button>
+        </div>
+        <div class="hint">Accepted: a .py file exporting <code>VALIDATION_RULES</code>, or a .json JSON-Schema file with "properties"/"required".</div>
+      </section>
+
+      <section>
+        <h2>3. Case</h2>
+        <div class="radio-row">
+          <label><input type="radio" name="case" value="auto" {% if config.case == 'auto' %}checked{% endif %}> Auto (use reference if valid, else black-box)</label>
+        </div>
+        <div class="radio-row">
+          <label><input type="radio" name="case" value="A" {% if config.case == 'A' %}checked{% endif %}> Force Case A (backend reference required)</label>
+          <label><input type="radio" name="case" value="B" {% if config.case == 'B' %}checked{% endif %}> Force Case B (black-box only)</label>
+        </div>
+
+        <button id="saveBtn" type="button">Save Settings</button>
+        <button id="runBtn" type="button">▶ Run Full Pipeline</button>
+        <span id="statusBadge" class="status-badge status-idle">idle</span>
+      </section>
+    </div>
+
+    <div>
+      <section>
+        <h2>Live Log</h2>
+        <div class="log-box" id="logBox">Configure the run on the left, then click "Run Full Pipeline".</div>
+        <button class="secondary" id="dashboardBtn" type="button" disabled>Open Dashboard →</button>
+      </section>
+
+      <section>
+        <h2>Quality Intelligence Dashboard</h2>
+        <div class="hint">Interactive Streamlit dashboard: run history, plain-English test catalog, AI root-cause diagnoses, performance charts and visual diffs. Fed by the SQLite database each run writes to.</div>
+        <button id="streamlitBtn" type="button">Open Quality Dashboard (Streamlit)</button>
+      </section>
+
+      <section>
+        <h2>AI Test Skeleton Generator</h2>
+        <div class="hint">Describe a test in plain English. Uses Ollama/OpenAI if configured, otherwise a keyword template. Output goes to <code>quality_suite/generated/</code> for you to review — it is a starting point, not a verified test.</div>
+        <input type="text" id="skelPrompt" placeholder="e.g. check the API rejects an age of 17 on register">
+        <button class="secondary" id="skelBtn" type="button">Generate skeleton</button>
+        <div class="hint" id="skelMeta"></div>
+        <div class="log-box" id="skelOut" style="height:220px;display:none"></div>
+      </section>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+let polling = null;
+
+function toast(msg) {
+  const t = $('toast');
+  t.textContent = msg;
+  t.style.display = 'block';
+  setTimeout(() => t.style.display = 'none', 2500);
+}
+
+function getCase() {
+  return document.querySelector('input[name="case"]:checked').value;
+}
+
+async function saveSettings() {
+  const body = {
+    target_url: $('target_url').value,
+    case: getCase(),
+    backend_reference_path: $('ref_select').value || null,
+  };
+  const res = await fetch('/api/config', {
+    method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(body),
+  });
+  const json = await res.json();
+  if (json.ok) toast('Settings saved.');
+}
+
+$('saveBtn').addEventListener('click', saveSettings);
+
+$('uploadBtn').addEventListener('click', async () => {
+  const fileInput = $('refFileInput');
+  if (!fileInput.files.length) { toast('Choose a file first.'); return; }
+  const fd = new FormData();
+  fd.append('file', fileInput.files[0]);
+  const res = await fetch('/api/upload_reference', { method: 'POST', body: fd });
+  const json = await res.json();
+  if (json.ok) {
+    toast(`Uploaded ${json.saved_as} and set as reference.`);
+    location.reload();
+  } else {
+    toast('Upload failed: ' + json.error);
+  }
+});
+
+$('runBtn').addEventListener('click', async () => {
+  await saveSettings();
+  const res = await fetch('/api/run', {
+    method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ case_override: null }),
+  });
+  const json = await res.json();
+  if (!json.ok) { toast(json.error); return; }
+  $('logBox').textContent = '';
+  $('dashboardBtn').disabled = true;
+  startPolling();
+});
+
+function setBadge(state) {
+  const badge = $('statusBadge');
+  badge.className = 'status-badge status-' + state;
+  badge.textContent = state;
+}
+
+function startPolling() {
+  setBadge('running');
+  $('runBtn').disabled = true;
+  if (polling) clearInterval(polling);
+  polling = setInterval(async () => {
+    const res = await fetch('/api/status');
+    const s = await res.json();
+    $('logBox').textContent = s.log.join('\n');
+    $('logBox').scrollTop = $('logBox').scrollHeight;
+    if (s.done) {
+      clearInterval(polling);
+      $('runBtn').disabled = false;
+      setBadge(s.success ? 'success' : 'failed');
+      $('dashboardBtn').disabled = !s.success;
+      toast(s.success ? 'Pipeline finished successfully.' : 'Pipeline failed — check the log.');
+    }
+  }, 1000);
+}
+
+$('dashboardBtn').addEventListener('click', () => {
+  window.open('/dashboard', '_blank');
+});
+
+$('streamlitBtn').addEventListener('click', async () => {
+  $('streamlitBtn').disabled = true;
+  toast('Starting Streamlit…');
+  const res = await fetch('/api/launch_dashboard', { method: 'POST' });
+  const json = await res.json();
+  $('streamlitBtn').disabled = false;
+  if (json.ok) window.open(json.url, '_blank');
+  else toast('Could not start Streamlit — is it installed? (py -m pip install streamlit)');
+});
+
+$('skelBtn').addEventListener('click', async () => {
+  const prompt = $('skelPrompt').value.trim();
+  if (!prompt) { toast('Describe the test first.'); return; }
+  $('skelBtn').disabled = true;
+  $('skelMeta').textContent = 'Generating…';
+  const res = await fetch('/api/generate_skeleton', {
+    method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ prompt }),
+  });
+  const json = await res.json();
+  $('skelBtn').disabled = false;
+  if (!json.ok) { $('skelMeta').textContent = json.error; return; }
+  $('skelMeta').textContent = `Saved to ${json.path} · written by ${json.provider}`;
+  $('skelOut').style.display = 'block';
+  $('skelOut').textContent = json.code;
+});
+
+// Resume polling if a run was already in progress (e.g. page refresh)
+(async () => {
+  const res = await fetch('/api/status');
+  const s = await res.json();
+  if (s.running) startPolling();
+  else if (s.done) {
+    setBadge(s.success ? 'success' : 'failed');
+    $('logBox').textContent = s.log.join('\n');
+    $('dashboardBtn').disabled = !s.success;
+  }
+})();
+</script>
+</body>
+</html>

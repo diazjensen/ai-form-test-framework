@@ -1,0 +1,9 @@
+{
+  "case": "B",
+  "source_url": "http://demo.owasp-juice.shop/",
+  "submit_endpoint": "http://demo.owasp-juice.shop/",
+  "method": "POST",
+  "fields": [],
+  "specification_source": "black_box_accessibility_and_dom",
+  "accessibility_snapshot": "- iframe"
+}

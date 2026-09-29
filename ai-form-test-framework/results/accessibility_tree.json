@@ -1,0 +1,6 @@
+{
+  "source": "accessibility_tree",
+  "url": "http://demo.owasp-juice.shop/",
+  "aria_snapshot": "- iframe",
+  "nodes": []
+}

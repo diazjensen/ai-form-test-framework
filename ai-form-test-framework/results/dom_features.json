@@ -1,0 +1,8 @@
+{
+  "source_url": "http://demo.owasp-juice.shop/",
+  "original_url": "http://demo.owasp-juice.shop/",
+  "submit_endpoint": "http://demo.owasp-juice.shop/",
+  "method": "POST",
+  "extraction_mode": "html_fallback_no_browser",
+  "fields": []
+}

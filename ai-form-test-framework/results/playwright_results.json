@@ -1,0 +1,32 @@
+[
+  {
+    "test": "positive_all_valid",
+    "passed": true,
+    "detail": "",
+    "screenshot": null
+  },
+  {
+    "test": "negative_full_name_invalid",
+    "passed": true,
+    "detail": "",
+    "screenshot": null
+  },
+  {
+    "test": "negative_email_invalid",
+    "passed": true,
+    "detail": "",
+    "screenshot": null
+  },
+  {
+    "test": "negative_age_invalid",
+    "passed": true,
+    "detail": "",
+    "screenshot": null
+  },
+  {
+    "test": "negative_password_invalid",
+    "passed": true,
+    "detail": "",
+    "screenshot": null
+  }
+]

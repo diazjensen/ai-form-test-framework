@@ -1,0 +1,10 @@
+flask
+playwright
+pytest
+pytest-playwright
+requests
+locust
+faker
+pillow
+pandas
+streamlit

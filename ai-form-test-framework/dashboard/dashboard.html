@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Web-Form Testing Framework — Dashboard</title>
+<style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; background:#0f172a; color:#e2e8f0; margin:0; padding:2rem; }
+  h1 { color:#38bdf8; }
+  .badge { display:inline-block; padding:.25rem .75rem; border-radius:999px; background:#1e293b; color:#94a3b8; font-size:.8rem; margin-left:.5rem; }
+  section { background:#1e293b; border-radius:14px; padding:1.5rem; margin-top:1.5rem; box-shadow:0 10px 30px rgba(0,0,0,.3); }
+  h2 { margin-top:0; color:#f1f5f9; border-bottom:1px solid #334155; padding-bottom:.5rem; }
+  table { width:100%; border-collapse:collapse; margin-top:1rem; }
+  th, td { text-align:left; padding:.5rem .75rem; border-bottom:1px solid #334155; font-size:.9rem; }
+  th { color:#94a3b8; text-transform:uppercase; font-size:.75rem; letter-spacing:.05em; }
+  .summary { display:flex; gap:1.5rem; flex-wrap:wrap; }
+  .card { background:#0f172a; border-radius:10px; padding:1rem 1.5rem; flex:1; min-width:160px; text-align:center; }
+  .card span { display:block; font-size:2rem; font-weight:700; color:#38bdf8; }
+  .card label { font-size:.8rem; color:#94a3b8; }
+  .metrics { display:flex; gap:1.5rem; flex-wrap:wrap; margin-top:1rem; }
+  .metric { background:#0f172a; border-radius:10px; padding:1rem 1.5rem; flex:1; min-width:140px; text-align:center; }
+  .metric span { display:block; font-size:1.5rem; font-weight:700; color:#f59e0b; }
+  .metric label { font-size:.75rem; color:#94a3b8; }
+</style>
+</head>
+<body>
+  <h1>AI-Based Web-Form Testing Framework <span class="badge">Case A: Backend reference: <code>backend_reference/validation_rules.py</code></span></h1>
+
+  <section>
+    <h2>Overview</h2>
+    <div class="summary">
+      <div class="card"><span>5/5</span><label>Playwright (Functional)</label></div>
+      <div class="card"><span>5/5</span><label>PyTest (Contract/Unit)</label></div>
+      <div class="card"><span>5</span><label>Fields Analyzed</label></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Extracted / Inferred Field Model</h2>
+    <table>
+      <tr><th>Field</th><th>Type</th><th>Required</th><th>Source</th><th>Confidence</th></tr>
+      
+            <tr>
+              <td>full_name</td><td>text</td><td>True</td>
+              <td>backend_code</td>
+              <td><span style="color:#16a34a;font-weight:600">100%</span></td>
+            </tr>
+            <tr>
+              <td>email</td><td>email</td><td>True</td>
+              <td>backend_code</td>
+              <td><span style="color:#16a34a;font-weight:600">100%</span></td>
+            </tr>
+            <tr>
+              <td>age</td><td>number</td><td>True</td>
+              <td>backend_code</td>
+              <td><span style="color:#16a34a;font-weight:600">100%</span></td>
+            </tr>
+            <tr>
+              <td>password</td><td>password</td><td>True</td>
+              <td>backend_code</td>
+              <td><span style="color:#16a34a;font-weight:600">100%</span></td>
+            </tr>
+            <tr>
+              <td>phone</td><td>text</td><td>False</td>
+              <td>backend_code</td>
+              <td><span style="color:#16a34a;font-weight:600">100%</span></td>
+            </tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Functional Test Results (Playwright)</h2>
+    <table>
+      <tr><th>Test</th><th>Result</th><th>Detail</th></tr>
+      <tr><td>positive_all_valid</td><td style='color:#16a34a'>PASS</td><td></td></tr><tr><td>negative_full_name_invalid</td><td style='color:#16a34a'>PASS</td><td></td></tr><tr><td>negative_email_invalid</td><td style='color:#16a34a'>PASS</td><td></td></tr><tr><td>negative_age_invalid</td><td style='color:#16a34a'>PASS</td><td></td></tr><tr><td>negative_password_invalid</td><td style='color:#16a34a'>PASS</td><td></td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Performance Metrics (Locust)</h2>
+    
+        <div class="metrics">
+          <div class="metric"><span>528</span><label>Total Requests</label></div>
+          <div class="metric"><span>0</span><label>Failures</label></div>
+          <div class="metric"><span>4 ms</span><label>Median Latency</label></div>
+          <div class="metric"><span>6.172315909073707 ms</span><label>Avg Latency</label></div>
+          <div class="metric"><span>18.76418688024054</span><label>Requests/sec</label></div>
+        </div>
+  </section>
+</body>
+</html>
