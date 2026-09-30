@@ -1,5 +1,5 @@
 {
-  "target_url": "http://demo.owasp-juice.shop/",
+  "target_url": "https://testpages.eviltester.com/styled/basic-html-form-test.html",
   "submit_endpoint": "/submit",
   "_comment_case": "case: 'A' = use backend_reference_path below. 'auto' = use it if present/valid, else fall back to Case B automatically. 'B' = force black-box fuzzing even if a reference file exists.",
   "case": "auto",

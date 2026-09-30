@@ -127,10 +127,13 @@ def test_web_form(
     feature_model = build_model(case)
 
     # -------------------------------------------------------------------------
-    # Stage 4: Generate Pytest Unit Test Suite
+    # Stage 4: Generate Pytest Test Suites (Contract & Browser Functional)
     # -------------------------------------------------------------------------
     from gen_pytest import gen as generate_pytest
-    test_file = generate_pytest(case)
+    contract_test_file = generate_pytest(case)
+
+    from gen_playwright import gen as generate_playwright
+    functional_test_file = generate_playwright(case)
 
     # -------------------------------------------------------------------------
     # Stage 5: Execute Pytest Suite & Capture Failure Artifacts
@@ -144,7 +147,7 @@ def test_web_form(
         if include_demo_failures:
             env["QS_DEMO_FAILURES"] = "1"
 
-        tests_to_run = [test_file]
+        tests_to_run = [contract_test_file, functional_test_file]
         if include_demo_failures:
             tests_to_run.append(os.path.join(ROOT, "quality_suite", "test_demo_failures.py"))
 
@@ -245,7 +248,8 @@ def test_web_form(
         "mode": mode_desc,
         "has_srs": has_srs,
         "srs_path": srs_resolved,
-        "generated_test_file": test_file,
+        "generated_test_file": contract_test_file,
+        "generated_functional_file": functional_test_file,
         "summary": test_results,
         "error_count": len(observed_errors),
         "errors": observed_errors,

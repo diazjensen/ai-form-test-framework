@@ -79,10 +79,11 @@ def pytest_collection_modifyitems(session, config, items):
     rows = []
     for it in items:
         d = _description(it)
+        layer = "functional" if "functional" in it.nodeid.lower() else "unit/contract"
         rows.append({
             "nodeid": it.nodeid,
             "name": it.name,
-            "layer": "unit/contract",
+            "layer": layer,
             "intent": d["intent"],
             "target_fields": d["target_fields"],
             "expected": d["expected"],
@@ -106,10 +107,11 @@ def pytest_runtest_makereport(item, call):
     _STATE["counts"][status] += 1
 
     d = _description(item)
+    layer = "functional" if "functional" in item.nodeid.lower() else "unit/contract"
     row = dict(
         nodeid=item.nodeid,
         name=item.name,
-        layer="unit/contract",
+        layer=layer,
         outcome=status,
         duration_s=round(rep.duration, 3),
         intent=d["intent"],

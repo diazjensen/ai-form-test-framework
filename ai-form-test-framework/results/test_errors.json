@@ -1,34 +1,18 @@
 {
-  "target_url": "http://demo.owasp-juice.shop/",
+  "target_url": "https://testpages.eviltester.com/styled/basic-html-form-test.html",
   "mode": "Case B: Black Box Testing (Chromium Accessibility Tree + DOM Features)",
   "has_srs": false,
   "srs_path": null,
   "summary": {
     "run_ids": [
-      51
+      55
     ],
-    "total": 1,
-    "passed": 0,
-    "failed": 1,
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
     "skipped": 0,
-    "duration_s": 4.77
+    "duration_s": 37.93
   },
-  "errors_count": 1,
-  "errors": [
-    {
-      "test_name": "test_full_valid_payload_accepted",
-      "nodeid": "tests_generated/test_contract.py::test_full_valid_payload_accepted",
-      "target_fields": "",
-      "intent": "Sanity check that a fully compliant payload satisfying all form constraints is accepted.",
-      "expected": "HTTP 200/201/success confirmation",
-      "error_message": "AssertionError: Expected success status, got 503\nassert (503 in (200, 201, 204, 302, 303) or False)\n +  where 503 = <Response [503]>.status_code\n +  and   False = <Response [503]>.ok",
-      "http_status": null,
-      "http_trace": "",
-      "console_logs": "",
-      "screenshot": null,
-      "ai_root_cause_diagnosis": "The observed behaviour did not match the expected outcome (HTTP 200/201/success confirmation). Re-run the scenario manually with the same inputs to see which value differs.",
-      "ai_provider": "heuristic",
-      "stack_trace": "tests_generated/test_contract.py:36: in test_full_valid_payload_accepted\n    assert r.status_code in (200, 201, 204, 302, 303) or r.ok, f'Expected success status, got {r.status_code}'\nE   AssertionError: Expected success status, got 503\nE   assert (503 in (200, 201, 204, 302, 303) or False)\nE    +  where 503 = <Response [503]>.status_code\nE    +  and   False = <Response [503]>.ok"
-    }
-  ]
+  "errors_count": 0,
+  "errors": []
 }
