@@ -9,79 +9,23 @@
       ],
       "confidence": {}
     },
+    "email": {
+      "required": false,
+      "notes": [
+        "Field accepted potentially unsafe input via 'sql_injection' probe (no server-side sanitisation observed).",
+        "Field accepted potentially unsafe input via 'script_tag' probe (no server-side sanitisation observed)."
+      ],
+      "confidence": {}
+    },
+    "age": {
+      "required": false,
+      "notes": [
+        "Field accepted potentially unsafe input via 'sql_injection' probe (no server-side sanitisation observed).",
+        "Field accepted potentially unsafe input via 'script_tag' probe (no server-side sanitisation observed)."
+      ],
+      "confidence": {}
+    },
     "password": {
-      "required": false,
-      "notes": [
-        "Field accepted potentially unsafe input via 'sql_injection' probe (no server-side sanitisation observed).",
-        "Field accepted potentially unsafe input via 'script_tag' probe (no server-side sanitisation observed)."
-      ],
-      "confidence": {}
-    },
-    "comments": {
-      "required": false,
-      "notes": [
-        "Field accepted potentially unsafe input via 'sql_injection' probe (no server-side sanitisation observed).",
-        "Field accepted potentially unsafe input via 'script_tag' probe (no server-side sanitisation observed)."
-      ],
-      "confidence": {}
-    },
-    "filename": {
-      "required": false,
-      "notes": [
-        "Field accepted potentially unsafe input via 'sql_injection' probe (no server-side sanitisation observed).",
-        "Field accepted potentially unsafe input via 'script_tag' probe (no server-side sanitisation observed)."
-      ],
-      "confidence": {}
-    },
-    "checkboxes[]": {
-      "required": false,
-      "notes": [
-        "Field accepted potentially unsafe input via 'sql_injection' probe (no server-side sanitisation observed).",
-        "Field accepted potentially unsafe input via 'script_tag' probe (no server-side sanitisation observed)."
-      ],
-      "confidence": {}
-    },
-    "radioval": {
-      "required": false,
-      "notes": [
-        "Field accepted potentially unsafe input via 'sql_injection' probe (no server-side sanitisation observed).",
-        "Field accepted potentially unsafe input via 'script_tag' probe (no server-side sanitisation observed)."
-      ],
-      "confidence": {}
-    },
-    "multipleselect[]": {
-      "required": false,
-      "notes": [
-        "Field accepted potentially unsafe input via 'sql_injection' probe (no server-side sanitisation observed).",
-        "Field accepted potentially unsafe input via 'script_tag' probe (no server-side sanitisation observed)."
-      ],
-      "confidence": {}
-    },
-    "dropdown": {
-      "required": false,
-      "notes": [
-        "Field accepted potentially unsafe input via 'sql_injection' probe (no server-side sanitisation observed).",
-        "Field accepted potentially unsafe input via 'script_tag' probe (no server-side sanitisation observed)."
-      ],
-      "confidence": {}
-    },
-    "image": {
-      "required": false,
-      "notes": [
-        "Field accepted potentially unsafe input via 'sql_injection' probe (no server-side sanitisation observed).",
-        "Field accepted potentially unsafe input via 'script_tag' probe (no server-side sanitisation observed)."
-      ],
-      "confidence": {}
-    },
-    "submitbutton": {
-      "required": false,
-      "notes": [
-        "Field accepted potentially unsafe input via 'sql_injection' probe (no server-side sanitisation observed).",
-        "Field accepted potentially unsafe input via 'script_tag' probe (no server-side sanitisation observed)."
-      ],
-      "confidence": {}
-    },
-    "reportmissingparams": {
       "required": false,
       "notes": [
         "Field accepted potentially unsafe input via 'sql_injection' probe (no server-side sanitisation observed).",

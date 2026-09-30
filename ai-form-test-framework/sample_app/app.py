@@ -124,5 +124,35 @@ def api_checkout():
     return jsonify({"status": "ok", "message": "Order placed."}), 201
 
 
+@app.route("/buggy-form", methods=["GET"])
+def buggy_form():
+    return render_template("buggy_form.html")
+
+
+@app.route("/buggy-submit", methods=["POST"])
+def buggy_submit():
+    """Deliberately defective endpoint to test AI framework error detection."""
+    data = request.form.to_dict() or request.get_json(silent=True) or {}
+    
+    # Defect 1: Returns 500 Internal Server Error when a valid standard payload is submitted
+    if data.get("password"):
+        return jsonify({
+            "status": "error",
+            "error": "InternalServerError: NullPointer / Database column 'users.password_hash' constraint violated",
+            "exception": "RuntimeError: Failed to process password hash on transaction commit"
+        }), 500
+
+    # Defect 2: Accepts empty username silently (violating required attribute)
+    if not data.get("username"):
+        return jsonify({"status": "ok", "message": "Accepted empty username!"}), 200
+
+    # Defect 3: Off-by-one boundary defect - rejects legal age 18..20
+    age = data.get("age")
+    if age and age.isdigit() and int(age) < 21:
+        return jsonify({"status": "error", "error": f"Age {age} rejected: must be 21 or older"}), 400
+
+    return jsonify({"status": "ok", "message": "Registration successful."}), 200
+
+
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=False, threaded=True)

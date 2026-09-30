@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Buggy User Registration Form</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background:#f8fafc; display:flex; justify-content:center; padding-top:40px; }
+    .card { background:#fff; padding:2rem; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,.08); width:380px; border-top: 4px solid #ef4444; }
+    h2 { margin-top:0; color: #dc2626; display: flex; align-items: center; gap: 8px; }
+    .badge { background: #fee2e2; color: #b91c1c; font-size: 0.75rem; padding: 2px 8px; border-radius: 9999px; font-weight: normal; }
+    label { display:block; margin-top:1rem; font-size:.85rem; color:#334155; font-weight:600; }
+    input { width:100%; box-sizing: border-box; padding:.55rem; margin-top:.25rem; border:1px solid #cbd5e1; border-radius:6px; }
+    button { margin-top:1.5rem; width:100%; padding:.65rem; background:#ef4444; color:#fff; border:none; border-radius:6px; font-weight:600; cursor:pointer; }
+    button:hover { background: #dc2626; }
+    #result { margin-top:1rem; font-size:.85rem; }
+    .ok { color:#16a34a; background:#dcfce7; padding:8px; border-radius:6px; }
+    .err { color:#dc2626; background:#fee2e2; padding:8px; border-radius:6px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🐛 Buggy Registration <span class="badge">Defect Demo</span></h2>
+    <p style="font-size:0.82rem; color:#64748b;">This form contains deliberate server and validation defects to test automated failure discovery.</p>
+    <form id="buggyForm" action="/buggy-submit" method="post">
+      <label for="username">Username (Required)</label>
+      <input type="text" id="username" name="username" required minlength="3" maxlength="20" placeholder="e.g. jensen">
+
+      <label for="email">Email Address (Required)</label>
+      <input type="email" id="email" name="email" required placeholder="user@example.com">
+
+      <label for="age">Age (Declared Min: 18, Max: 100)</label>
+      <input type="number" id="age" name="age" required min="18" max="100" placeholder="25">
+
+      <label for="password">Password (Required, Min 8 chars)</label>
+      <input type="password" id="password" name="password" required minlength="8" maxlength="64" placeholder="••••••••">
+
+      <button type="submit">Submit Registration</button>
+    </form>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    document.getElementById('buggyForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const data = new URLSearchParams(new FormData(form));
+      try {
+        const res = await fetch('/buggy-submit', { method: 'POST', body: data });
+        const json = await res.json();
+        const box = document.getElementById('result');
+        if (res.ok) {
+          box.innerHTML = `<p class="ok">${json.message}</p>`;
+        } else {
+          box.innerHTML = '<p class="err">' + (json.error || Object.values(json.errors || {}).join('<br>')) + '</p>';
+        }
+      } catch (err) {
+        document.getElementById('result').innerHTML = `<p class="err">Server Error: ${err.message}</p>`;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,123 +1,43 @@
 {
   "source": "accessibility_tree",
-  "url": "https://testpages.eviltester.com/styled/basic-html-form-test.html",
-  "aria_snapshot": "- banner:\n  - navigation:\n    - link:\n      - /url: /\n      - img\n    - list:\n      - listitem:\n        - link \"Pages\":\n          - /url: /pages/\n      - listitem:\n        - link \"Apps\":\n          - /url: /apps/\n      - listitem:\n        - link \"Fun and Games\":\n          - /url: /fun-and-games/\n      - listitem:\n        - link \"Tools\":\n          - /url: /tools/\n      - listitem:\n        - link \"Challenges\":\n          - /url: /challenges/\n      - listitem:\n        - link \"Reference Information and Tutorials\":\n          - /url: /reference/\n  - text: Support this site by joining our Patreon. For as little as $1 a month you receive exclusive ad-free content, ebooks and online training courses. \u2014\n  - link \"Learn more\":\n    - /url: https://patreon.com/eviltester\n- complementary:\n  - navigation:\n    - list:\n      - listitem:\n        - link \"Practice Pages\":\n          - /url: /\n        - list:\n          - listitem:\n            - text: \uf0da\n            - link \"Pages\":\n              - /url: /pages/\n            - list:\n              - listitem:\n                - text: \uf0da\n                - link \"Basics\":\n                  - /url: /pages/basics/\n              - listitem:\n                - text: \uf0da\n                - link \"Input Elements\":\n                  - /url: /pages/input-elements/\n              - listitem:\n                - text: \uf0da\n                - link \"Forms\":\n                  - /url: /pages/forms/\n                - list:\n                  - listitem:\n                    - text: \uf0da\n                    - link \"Basic Inputs\":\n                      - /url: /pages/forms/basic-inputs/\n                  - listitem:\n                    - text: \uf0da\n                    - link \"Number Inputs\":\n                      - /url: /pages/forms/number-inputs/\n                  - listitem:\n                    - text: \uf0da\n                    - link \"Text Inputs\":\n                      - /url: /pages/forms/text-inputs/\n                  - listitem:\n                    - text: \uf0da\n                    - link \"Other Text\":\n                      - /url: /pages/forms/other-text/\n                  - listitem:\n                    - text: \uf0da\n                    - link \"Special Formats\":\n                      - /url: /pages/forms/special-formats/\n                  - listitem:\n                    - text: \uf0da\n                    - link \"HTML Form\":\n                      - /url: /pages/forms/html-form/\n                    - list:\n                      - listitem:\n                        - link \"Instructions\":\n                          - /url: /pages/forms/html-form/html-form-instructions/\n                  - listitem:\n                    - text: \uf0da\n                    - link \"Ajax\":\n                      - /url: /pages/forms/ajax/\n                  - listitem:\n                    - text: \uf0da\n                    - link \"JavaScript Validation\":\n                      - /url: /pages/forms/javascript-validation/\n              - listitem:\n                - text: \uf0da\n                - link \"CSS\":\n                  - /url: /pages/css/\n              - listitem:\n                - text: \uf0da\n                - link \"Navigation\":\n                  - /url: /pages/navigation/\n              - listitem:\n                - text: \uf0da\n                - link \"Embedded Content\":\n                  - /url: /pages/embedded-pages/\n              - listitem:\n                - text: \uf0da\n                - link \"Files\":\n                  - /url: /pages/files/\n              - listitem:\n                - text: \uf0da\n                - link \"Storage\":\n                  - /url: /pages/storage/\n              - listitem:\n                - text: \uf0da\n                - link \"Interaction\":\n                  - /url: /pages/interaction/\n              - listitem:\n                - text: \uf0da\n                - link \"Mobile\":\n                  - /url: /pages/mobile/\n              - listitem:\n                - text: \uf0da\n                - link \"Errors\":\n                  - /url: /pages/errors/\n              - listitem:\n                - text: \uf0da\n                - link \"Auth\":\n                  - /url: /pages/auth/\n              - listitem:\n                - text: \uf0da\n                - link \"Web Components\":\n                  - /url: /pages/web-components/\n              - listitem:\n                - text: \uf0da\n                - link \"Browser APIs\":\n                  - /url: /pages/browser-apis/\n          - listitem:\n            - text: \uf0da\n            - link \"Apps\":\n              - /url: /apps/\n          - listitem:\n            - text: \uf0da\n            - link \"Fun and Games\":\n              - /url: /fun-and-games/\n          - listitem:\n            - text: \uf0da\n            - link \"Tools\":\n              - /url: /tools/\n          - listitem:\n            - text: \uf0da\n            - link \"Challenges\":\n              - /url: /challenges/\n          - listitem:\n            - text: \uf0da\n            - link \"Reference Information and Tutorials\":\n              - /url: /reference/\n- complementary:\n  - paragraph: Support this site by joining our Patreon. As little as $1 a month, and you receive exclusive content, ebooks and videos.\n  - paragraph:\n    - link \"Learn More\":\n      - /url: https://patreon.com/eviltester\n  - paragraph: Tag Cloud\n  - list:\n    - listitem:\n      - link \"AI 1\":\n        - /url: /tags/ai/\n    - listitem:\n      - link \"Alerts 2\":\n        - /url: /tags/alerts/\n    - listitem:\n      - link \"API 21\":\n        - /url: /tags/api/\n    - listitem:\n      - link \"Attributes 2\":\n        - /url: /tags/attributes/\n    - listitem:\n      - link \"Authentication 3\":\n        - /url: /tags/authentication/\n    - listitem:\n      - link \"Automating 3\":\n        - /url: /tags/automating/\n    - listitem:\n      - link \"Canvas 3\":\n        - /url: /tags/canvas/\n    - listitem:\n      - link \"Components 1\":\n        - /url: /tags/components/\n    - listitem:\n      - link \"Cookies 3\":\n        - /url: /tags/cookies/\n    - listitem:\n      - link \"CSS 4\":\n        - /url: /tags/css/\n    - listitem:\n      - link \"Elements 20\":\n        - /url: /tags/elements/\n    - listitem:\n      - link \"Errors 4\":\n        - /url: /tags/errors/\n    - listitem:\n      - link \"Exploratory Testing 74\":\n        - /url: /tags/exploratory-testing/\n    - listitem:\n      - link \"Files 2\":\n        - /url: /tags/files/\n    - listitem:\n      - link \"Forms 8\":\n        - /url: /tags/forms/\n    - listitem:\n      - link \"Frames 4\":\n        - /url: /tags/frames/\n    - listitem:\n      - link \"Games 18\":\n        - /url: /tags/games/\n    - listitem:\n      - link \"Hover 1\":\n        - /url: /tags/hover/\n    - listitem:\n      - link \"HTML 1\":\n        - /url: /tags/html/\n    - listitem:\n      - link \"HTTP 1\":\n        - /url: /tags/http/\n    - listitem:\n      - link \"Images 1\":\n        - /url: /tags/images/\n    - listitem:\n      - link \"Input 7\":\n        - /url: /tags/input/\n    - listitem:\n      - link \"Interaction 49\":\n        - /url: /tags/interaction/\n    - listitem:\n      - link \"Java 1\":\n        - /url: /tags/java/\n    - listitem:\n      - link \"JavaScript 63\":\n        - /url: /tags/javascript/\n    - listitem:\n      - link \"JSON 1\":\n        - /url: /tags/json/\n    - listitem:\n      - link \"Local Storage 1\":\n        - /url: /tags/local-storage/\n    - listitem:\n      - link \"Locators 19\":\n        - /url: /tags/locators/\n    - listitem:\n      - link \"Mobile 1\":\n        - /url: /tags/mobile/\n    - listitem:\n      - link \"Navigation 7\":\n        - /url: /tags/navigation/\n    - listitem:\n      - link \"Randomness 1\":\n        - /url: /tags/randomness/\n    - listitem:\n      - link \"Security Testing 1\":\n        - /url: /tags/security-testing/\n    - listitem:\n      - link \"Shadow Dom 3\":\n        - /url: /tags/shadow-dom/\n    - listitem:\n      - link \"Storage 5\":\n        - /url: /tags/storage/\n    - listitem:\n      - link \"Synchronization 12\":\n        - /url: /tags/synchronization/\n    - listitem:\n      - link \"Table 2\":\n        - /url: /tags/table/\n    - listitem:\n      - link \"Test Data 2\":\n        - /url: /tags/test-data/\n    - listitem:\n      - link \"Text 4\":\n        - /url: /tags/text/\n    - listitem:\n      - link \"Tool 3\":\n        - /url: /tags/tool/\n    - listitem:\n      - link \"WebDriver 2\":\n        - /url: /tags/webdriver/\n  - paragraph: Categories\n  - list:\n    - listitem:\n      - link \"Advanced 11\":\n        - /url: /categories/advanced/\n    - listitem:\n      - link \"Basics 22\":\n        - /url: /categories/basics/\n    - listitem:\n      - link \"Buggy Game 17\":\n        - /url: /categories/buggy-game/\n    - listitem:\n      - link \"Challenges 12\":\n        - /url: /categories/challenges/\n    - listitem:\n      - link \"Fun and Games 19\":\n        - /url: /categories/fun-and-games/\n    - listitem:\n      - link \"Intermediate 17\":\n        - /url: /categories/intermediate/\n    - listitem:\n      - link \"Micro App 33\":\n        - /url: /categories/micro-app/\n    - listitem:\n      - link \"Reference 6\":\n        - /url: /categories/reference/\n    - listitem:\n      - link \"Tool 3\":\n        - /url: /categories/tool/\n- main:\n  - navigation \"breadcrumb\":\n    - list:\n      - listitem:\n        - link \"Pages\":\n          - /url: /pages/\n      - listitem:\n        - text: /\n        - link \"Forms\":\n          - /url: /pages/forms/\n      - listitem: / HTML Form\n  - heading \"HTML Form\" [level=1]\n  - paragraph: \"Tags:\"\n  - list:\n    - listitem:\n      - link \"Elements\":\n        - /url: https://testpages.eviltester.com/tags/elements/\n    - listitem:\n      - link \"Locators\":\n        - /url: https://testpages.eviltester.com/tags/locators/\n    - listitem:\n      - link \"Forms\":\n        - /url: https://testpages.eviltester.com/tags/forms/\n    - listitem:\n      - link \"Exploratory Testing\":\n        - /url: https://testpages.eviltester.com/tags/exploratory-testing/\n  - paragraph: \"Categories:\"\n  - list:\n    - listitem:\n      - link \"Basics\":\n        - /url: https://testpages.eviltester.com/categories/basics/\n  - paragraph: Submit this simple HTML form will POST your details to be processed by another part of the application and shown on a results page.\n  - separator\n  - table:\n    - rowgroup:\n      - row \"Username:\":\n        - cell \"Username:\":\n          - text: \"Username:\"\n          - textbox\n      - row \"Password:\":\n        - cell \"Password:\":\n          - text: \"Password:\"\n          - textbox\n      - 'row \"TextArea Comment: Comments...\"':\n        - 'cell \"TextArea Comment: Comments...\"':\n          - text: \"TextArea Comment:\"\n          - textbox: Comments...\n      - 'row \"Filename: Choose File\"':\n        - 'cell \"Filename: Choose File\"':\n          - text: \"Filename:\"\n          - button \"Choose File\"\n      - 'row \"Checkbox Items: Checkbox 1 Checkbox 2 Checkbox 3\"':\n        - 'cell \"Checkbox Items: Checkbox 1 Checkbox 2 Checkbox 3\"':\n          - text: \"Checkbox Items:\"\n          - checkbox\n          - text: Checkbox 1\n          - checkbox\n          - text: Checkbox 2\n          - checkbox [checked]\n          - text: Checkbox 3\n      - 'row \"Radio Items: radio 1 radio 2 radio 3\"':\n        - 'cell \"Radio Items: radio 1 radio 2 radio 3\"':\n          - text: \"Radio Items:\"\n          - radio\n          - text: radio 1\n          - radio [checked]\n          - text: radio 2\n          - radio\n          - text: radio 3\n      - row \"Multiple Select Values Selection Item 4\":\n        - cell \"Multiple Select Values Selection Item 4\":\n          - text: Multiple Select Values\n          - listbox:\n            - option \"Selection Item 1\"\n            - option \"Selection Item 2\"\n            - option \"Selection Item 3\"\n            - option \"Selection Item 4\" [selected]\n      - 'row \"Dropdown: Drop Down Item 3\"':\n        - 'cell \"Dropdown: Drop Down Item 3\"':\n          - text: \"Dropdown:\"\n          - combobox:\n            - option \"Drop Down Item 1\"\n            - option \"Drop Down Item 2\"\n            - option \"Drop Down Item 3\" [selected]\n            - option \"Drop Down Item 4\"\n            - option \"Drop Down Item 5\"\n            - option \"Drop Down Item 6\"\n      - row \"Submit\":\n        - cell \"Submit\":\n          - button \"Submit\"\n      - row \"cancel submit\":\n        - cell \"cancel submit\":\n          - button \"cancel\"\n          - button \"submit\"\n  - separator\n  - paragraph:\n    - link \"HTML Form - Instructions\":\n      - /url: /pages/forms/html-form/html-form-instructions/\n  - paragraph\n- contentinfo:\n  - paragraph:\n    - text: Help keep this site free by joining our\n    - link \"Patreon Membership site\":\n      - /url: https://patreon.com/eviltester\n    - text: . Membership costs as little as $1 a month and includes access to exclusive\n    - link \"e-books and online training courses\":\n      - /url: https://www.testerhq.com/\n    - text: .\n  - paragraph:\n    - text: If you'd like to see your advertising message here or learn about corporate sponsorship then\n    - link \"Contact Us\":\n      - /url: https://linkedin.com/in/eviltester\n    - text: .\n  - list:\n    - listitem \"Twitter\":\n      - link \"Twitter\":\n        - /url: https://twitter.com/eviltester\n        - text: \uf099\n    - listitem \"LinkedIn\":\n      - link \"LinkedIn\":\n        - /url: https://linkedin.com/in/eviltester\n        - text: \uf08c\n  - list:\n    - listitem \"GitHub\":\n      - link \"GitHub\":\n        - /url: https://github.com/eviltester\n        - text: \uf09b\n  - text: \u00a9 2025\u20132026 Compendium Developments Ltd\n  - link \"Privacy Policy\":\n    - /url: https://www.eviltester.com/page/privacy/",
+  "url": "http://127.0.0.1:5000/buggy-form",
+  "aria_snapshot": "- heading \"\ud83d\udc1b Buggy Registration Defect Demo\" [level=2]\n- paragraph: This form contains deliberate server and validation defects to test automated failure discovery.\n- text: Username (Required)\n- textbox \"Username (Required)\":\n  - /placeholder: e.g. jensen\n- text: Email Address (Required)\n- textbox \"Email Address (Required)\":\n  - /placeholder: user@example.com\n- text: \"Age (Declared Min: 18, Max: 100)\"\n- 'spinbutton \"Age (Declared Min: 18, Max: 100)\"'\n- text: Password (Required, Min 8 chars)\n- textbox \"Password (Required, Min 8 chars)\":\n  - /placeholder: \u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\n- button \"Submit Registration\"",
   "nodes": [
     {
       "role": "textbox",
-      "name": "",
+      "name": "Username (Required)",
       "value": null,
-      "required": false,
+      "required": true,
       "invalid": "false",
       "description": null
     },
     {
       "role": "textbox",
-      "name": "",
+      "name": "Email Address (Required)",
       "value": null,
-      "required": false,
+      "required": true,
+      "invalid": "false",
+      "description": null
+    },
+    {
+      "role": "spinbutton",
+      "name": "Age (Declared Min: 18, Max: 100)",
+      "value": null,
+      "required": true,
       "invalid": "false",
       "description": null
     },
     {
       "role": "textbox",
-      "name": "",
-      "value": "Comments...",
-      "required": false,
+      "name": "Password (Required, Min 8 chars)",
+      "value": null,
+      "required": true,
       "invalid": "false",
       "description": null
     },
     {
       "role": "button",
-      "name": "Choose File",
-      "value": "No file chosen",
-      "required": false,
-      "invalid": "false",
-      "description": null
-    },
-    {
-      "role": "checkbox",
-      "name": "",
-      "value": null,
-      "required": false,
-      "invalid": "false",
-      "description": null
-    },
-    {
-      "role": "checkbox",
-      "name": "",
-      "value": null,
-      "required": false,
-      "invalid": "false",
-      "description": null
-    },
-    {
-      "role": "checkbox",
-      "name": "",
-      "value": null,
-      "required": false,
-      "invalid": "false",
-      "description": null
-    },
-    {
-      "role": "radio",
-      "name": "",
-      "value": null,
-      "required": false,
-      "invalid": "false",
-      "description": null
-    },
-    {
-      "role": "radio",
-      "name": "",
-      "value": null,
-      "required": false,
-      "invalid": "false",
-      "description": null
-    },
-    {
-      "role": "radio",
-      "name": "",
-      "value": null,
-      "required": false,
-      "invalid": "false",
-      "description": null
-    },
-    {
-      "role": "listbox",
-      "name": "",
-      "value": null,
-      "required": false,
-      "invalid": "false",
-      "description": null
-    },
-    {
-      "role": "combobox",
-      "name": "",
-      "value": "Drop Down Item 3",
-      "required": false,
-      "invalid": "false",
-      "description": null
-    },
-    {
-      "role": "button",
-      "name": "Submit",
-      "value": null,
-      "required": false,
-      "invalid": "false",
-      "description": null
-    },
-    {
-      "role": "button",
-      "name": "cancel",
-      "value": null,
-      "required": false,
-      "invalid": "false",
-      "description": null
-    },
-    {
-      "role": "button",
-      "name": "submit",
+      "name": "Submit Registration",
       "value": null,
       "required": false,
       "invalid": "false",
