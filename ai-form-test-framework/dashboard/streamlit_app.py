@@ -94,8 +94,8 @@ with st.container():
     with col1:
         target_url = st.text_input(
             "Web Form URL under test",
-            value=get_default_url(),
-            placeholder="e.g. https://testpages.eviltester.com/styled/basic-html-form-test.html or http://127.0.0.1:5000/",
+            value="",
+            placeholder="https://...",
             help="Enter the direct URL of any interactive web form."
         )
 

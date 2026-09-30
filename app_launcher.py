@@ -29,9 +29,9 @@ def main():
     print("=" * 80)
 
     # 1. URL Prompt
-    url = input("\n👉 Enter the Web Form URL to test (e.g. https://example.com/login):\n> ").strip()
+    url = input("\n👉 Enter the Web Form URL to test:\n> ").strip()
     while not url.startswith("http://") and not url.startswith("https://"):
-        print("❌ Invalid URL. Please include http:// or https:// (e.g. https://example.com/form)")
+        print("❌ Invalid URL. Please include http:// or https://")
         url = input("> ").strip()
 
     # 2. Mode Prompt
